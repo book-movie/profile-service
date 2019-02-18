@@ -19,7 +19,6 @@ import com.bookyourticket.profile.service.ProfileService;
 @SpringBootTest
 public class ServiceTest {
 
-	
 	@Autowired
 	ProfileService service;
 
@@ -39,22 +38,23 @@ public class ServiceTest {
 	@Test
 	public void testForGetProfileByIdWhichIsNotPresent() {
 		Optional<Profile> getProfileById = service.getProfileById(1);
-		assertEquals(true, getProfileById.isPresent());
+		assertEquals(false, getProfileById.isPresent());
 	}
 
-	/*
-	 * @Test public void testForDelete() { service.deleteProfileById(101);
-	 * Optional<Profile> getProfileByIdObject = service.getProfileById(1);
-	 * assertEquals(false, getProfileByIdObject.isPresent());
-	 * 
-	 * }
-	 */
-	/*
-	 * @Test public void testForDeleteAndCheckSize() { List<Profile>
-	 * getProfileByIdObject = service.getAllProfile();
-	 * service.deleteProfileById(101); assertEquals(0, getProfileByIdObject.size());
-	 * }
-	 */
+	@Test
+	public void testForDelete() {
+		service.deleteProfile(101);
+		Optional<Profile> getProfileByIdObject = service.getProfileById(1);
+		assertEquals(false, getProfileByIdObject.isPresent());
+
+	}
+
+	@Test
+	public void testForDeleteAndCheckSize() {
+		List<Profile> getProfileByIdObject = service.getAllProfile();
+		service.deleteProfile(101);
+		assertEquals(0, getProfileByIdObject.size());
+	}
 
 	/*
 	 * @Test public void testForAddingAccount() {
@@ -66,7 +66,7 @@ public class ServiceTest {
 	 * 
 	 * }
 	 */
-	
+
 	/*
 	 * @Test public void testForUpdate() { Profile profile=new Profile(101,
 	 * "Srivani", "kunni@gmail.com", "7894561230", new Address("900", "Ramnagar",

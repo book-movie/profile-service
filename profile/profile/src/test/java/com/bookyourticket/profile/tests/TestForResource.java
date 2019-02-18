@@ -93,14 +93,14 @@ public class TestForResource {
 		assertEquals(responseEntity.getStatusCode(), HttpStatus.NOT_FOUND);
 	}
 
-	@Test
-	public void testForUpdate() {
-		
-	    testRestTemplate.put("/profiles/101", profile);
-		
-	    ResponseEntity<Profile> responseEntity = testRestTemplate.getForEntity("/profiles/101", Profile.class);
-	    System.out.println(profile.getEmailId());
-	    System.out.println(responseEntity.getBody().getEmailId());
-		assertEquals(profile.getGender(), responseEntity.getBody().getGender());
-	}
+	/*
+	 * @Test public void testForUpdate() {
+	 * 
+	 * testRestTemplate.put("/profiles", profile);
+	 * 
+	 * ResponseEntity<Profile> responseEntity =
+	 * testRestTemplate.getForEntity("/profiles", Profile.class);
+	 * System.out.println(responseEntity.getBody().getEmailId());
+	 * assertEquals(profile.getGender(), responseEntity.getBody().getGender()); }
+	 */
 }
